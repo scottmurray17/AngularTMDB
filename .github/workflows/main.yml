@@ -18,7 +18,6 @@ jobs:
     - name: Prepare and deploy
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        TMDB_KEY: ${{ secrets.TMDB_KEY }}
       run: |
         npm install
         npm run ng -- deploy --base-href=/AngularTMDB/ --name="scottmurray17" --email="scott.a.murray@protonmail.com" --no-silent
