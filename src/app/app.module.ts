@@ -3,10 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MovieComponent } from './movie/movie.component';
-import { TvComponent } from './tv/tv.component';
-import { PersonComponent } from './person/person.component';
-import { SearchComponent } from './search/search.component';
+import { MovieComponent } from './components/movie/movie.component';
+import { TvComponent } from './components/tv/tv.component';
+import { PersonComponent } from './components/person/person.component';
+import { SearchComponent } from './components/search/search.component';
+import { services } from './services';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { SearchComponent } from './search/search.component';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [...services],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
