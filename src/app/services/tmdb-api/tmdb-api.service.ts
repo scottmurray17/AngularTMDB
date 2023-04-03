@@ -22,4 +22,26 @@ export class TmdbApiService {
       }
     }
   }
+
+  async getShow(showId: String) {
+    try {
+      const response = await axios.get(`${constants.API_URL}/show/${showId}`, config);
+      return response;
+    } catch {
+      return {
+        data: ['Show not found']
+      }
+    }
+  }
+
+  async getPerson(personId: String) {
+    try {
+      const response = await axios.get(`${constants.API_URL}/show/${personId}`, config);
+      return response;
+    } catch {
+      return {
+        data: ['Person not found']
+      }
+    }
+  }
 }

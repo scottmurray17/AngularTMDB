@@ -1,30 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TmdbApiService } from 'src/app/services/tmdb-api/tmdb-api.service';
 
 @Component({
-  selector: 'app-person',
-  templateUrl: './person.component.html',
-  styleUrls: ['./person.component.scss']
+  selector: 'app-show',
+  templateUrl: './show.component.html',
+  styleUrls: ['./show.component.scss']
 })
-export class PersonComponent implements OnInit {
-  person: any;
+export class ShowComponent{
+  show: any;
   constructor(private readonly route: ActivatedRoute, private readonly api: TmdbApiService) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       if (!Object.keys(params).includes('id')) {
-        this.person = ["No id provided"];
+        this.show = ["No id provided"];
         return;
       }
 
       if (!Number.isInteger(Number(params['id']))) {
-        this.person = ["Invalid id"];
+        this.show = ["Invalid id"];
         return;
       }
 
-      this.api.getPerson(params['id']).then(person => {
-        this.person = Object.entries(person.data);
+      this.api.getPerson(params['id']).then(show => {
+        this.show = Object.entries(show.data);
       });
     })
   }
