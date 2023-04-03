@@ -26,13 +26,9 @@ export class MovieComponent implements OnInit {
         return
       }
 
-      try {
-        this.api.getMovie(params['id']).then(movie => {
-          this.movie = Object.entries(movie.data)
-        })
-      } catch {
-        this.movie = ["Movie not found"]
-      }
+      this.api.getMovie(params['id']).then(movie => {
+        this.movie = Object.entries(movie.data)
+      })
     })
   }
 }
