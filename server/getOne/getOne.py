@@ -16,11 +16,37 @@ def lambda_handler(event, context):
     else: raise 'INVALID RESOURCE'
 
     index = event['pathParameters']['id']
-    movieResponse = requests.get(f'https://api.themoviedb.org/3/{searchType}/{index}?api_key={API_KEY}')
+    objectRequest = requests.get(f'https://api.themoviedb.org/3/{searchType}/{index}?api_key={API_KEY}')
+    tmdbObject = objectRequest.json()
+
+    response = None
+    if searchType == 'movie':
+      cast = requests.get(f'https://api.themoviedb.org/3/{searchType}/{index}/credits?api_key={API_KEY}').json()
+      response = {
+        'backdrop_path': tmdbObject['backdrop_path'],
+        'budget': tmdbObject['budget'],
+        'genres': list(map(lambda genre: genre['name'], tmdbObject['genres'])),
+        'homepage': tmdbObject['homepage'],
+        'imdb_id': tmdbObject['imdb_id'],
+        'original_language': tmdbObject['original_language'],
+        'overview': tmdbObject['overview'],
+        'popularity': tmdbObject['popularity'],
+        'poster_path': tmdbObject['poster_path'],
+        'release_date': tmdbObject['release_date'],
+        'revenue': tmdbObject['revenue'],
+        'runtime': tmdbObject['runtime'],
+        'status': tmdbObject['status'],
+        'tagline': tmdbObject['tagline'],
+        'title': tmdbObject['title'],
+        'vote_average': tmdbObject['vote_average'],
+        'vote_count': tmdbObject['vote_count'],
+        'cast': list(map(lambda person: {'id': person['id'], 'name': person['name'], 'character': person['character']}, cast['cast'])),
+      }
+    else: response = tmdbObject
 
     return {
-      'statusCode': movieResponse.status_code,
-      'body': json.dumps(movieResponse.json()),
+      'statusCode': objectRequest.status_code,
+      'body': json.dumps(response),
       'headers': {
         'Access-Control-Allow-Headers': 'Content-Type',
         'Access-Control-Allow-Origin': event['headers']['origin'],

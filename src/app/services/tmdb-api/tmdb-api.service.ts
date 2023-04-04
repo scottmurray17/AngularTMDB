@@ -1,6 +1,7 @@
 import { constants } from "../../../constants";
 import axios from "axios";
 import { Injectable } from "@angular/core";
+import { Movie } from "src/app/models/movie.model";
 
 const config = {
   headers: {
@@ -15,11 +16,9 @@ export class TmdbApiService {
   async getMovie(movieId: String) {
     try {
       const response = await axios.get(`${constants.API_URL}/movie/${movieId}`, config);
-      return response;
+      return response.data as Movie;
     } catch {
-      return {
-        data: ['Movie not found']
-      }
+      return {}
     }
   }
 
