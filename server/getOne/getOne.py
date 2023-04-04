@@ -20,8 +20,11 @@ def lambda_handler(event, context):
     tmdbObject = objectRequest.json()
 
     response = None
-    if searchType == 'movie':
+    if objectRequest.status_code != 200:
+      response = {'message': tmdbObject['status_message']}
+    elif searchType == 'movie':
       cast = requests.get(f'https://api.themoviedb.org/3/{searchType}/{index}/credits?api_key={API_KEY}').json()
+      if not 'cast' in cast: cast['cast'] = []
       response = {
         'backdrop_path': tmdbObject['backdrop_path'],
         'budget': tmdbObject['budget'],
