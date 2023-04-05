@@ -8,6 +8,7 @@ import { ShowComponent } from './components/show/show.component';
 import { PersonComponent } from './components/person/person.component';
 import { SearchComponent } from './components/search/search.component';
 import { services } from './services';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { services } from './services';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule
   ],
   providers: [...services],
   bootstrap: [AppComponent]

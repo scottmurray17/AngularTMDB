@@ -1,1 +1,9 @@
-<p [innerHtml]="movie"></p>
+<div *ngIf="loading" class="d-flex justify-content-center">
+  <div id="spinner" class="spinner-border text-primary" role="status">
+    <span class="sr-only"></span>
+  </div>
+</div>
+
+<div id="content" *ngIf="!loading">
+  <img id="backdrop" [src]="backdrop" alt="backdrop">
+</div>
