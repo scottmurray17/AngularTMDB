@@ -28,7 +28,7 @@ export class MovieComponent implements OnInit {
         return;
       }
 
-      this.api.getMovie(params['id']).then(movie => {
+      this.api.getMovie(params['id']).then((movie: Movie) => {
         this.movie = movie;
         if (movie.backdrop_path) this.backdrop = `https://image.tmdb.org/t/p/original/${movie.backdrop_path}`;
         if (movie.poster_path) this.poster = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;

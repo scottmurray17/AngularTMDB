@@ -45,6 +45,21 @@ def lambda_handler(event, context):
         'vote_count': tmdbObject['vote_count'],
         'cast': list(map(lambda person: {'id': person['id'], 'name': person['name'], 'character': person['character'], 'profile_path': person['profile_path']}, cast['cast'])),
       }
+    elif searchType == 'tv':
+      cast = requests.get(f'https://api.themoviedb.org/3/{searchType}/{index}/credits?api_key={API_KEY}').json()
+      if not 'cast' in cast: cast['cast'] = []
+      response = {
+        'backdrop_path': tmdbObject['backdrop_path'],
+        'genres': list(map(lambda genre: genre['name'], tmdbObject['genres'])),
+        'overview': tmdbObject['overview'],
+        'poster_path': tmdbObject['poster_path'],
+        'first_air_date': tmdbObject['first_air_date'],
+        'seasons': len(tmdbObject['seasons']),
+        'tagline': tmdbObject['tagline'],
+        'name': tmdbObject['name'],
+        'vote_average': tmdbObject['vote_average'],
+        'cast': list(map(lambda person: {'id': person['id'], 'name': person['name'], 'character': person['character'], 'profile_path': person['profile_path']}, cast['cast'])),
+      }
     else: response = tmdbObject
 
     return {

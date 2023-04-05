@@ -2,6 +2,7 @@ import { constants } from "../../../constants";
 import axios from "axios";
 import { Injectable } from "@angular/core";
 import { Movie } from "src/app/models/movie.model";
+import { Show } from "src/app/models/show.model";
 
 const config = {
   headers: {
@@ -13,23 +14,21 @@ const config = {
 export class TmdbApiService {
   constructor() {}
 
-  async getMovie(movieId: String) {
+  async getMovie(movieId: String): Promise<Movie> {
     try {
       const response = await axios.get(`${constants.API_URL}/movie/${movieId}`, config);
       return response.data as Movie;
     } catch {
-      return {} as Movie
+      return {} as Movie;
     }
   }
 
-  async getShow(showId: String) {
+  async getShow(showId: String): Promise<Show> {
     try {
       const response = await axios.get(`${constants.API_URL}/show/${showId}`, config);
-      return response;
+      return response.data as Show;
     } catch {
-      return {
-        data: ['Show not found']
-      }
+      return {} as Show;
     }
   }
 

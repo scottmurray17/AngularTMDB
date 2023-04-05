@@ -1,3 +1,51 @@
-<div *ngFor="let entry of show" >
-  <p [innerHtml]="entry"></p>
+<div *ngIf="loading" class="d-flex justify-content-center">
+  <div id="spinner" class="spinner-border text-primary" role="status">
+    <span class="sr-only"></span>
+  </div>
+</div>
+
+<div id="wrap" *ngIf="!loading">
+  <div id="backdrop-color">
+    <img id="backdrop" [src]="backdrop" alt="backdrop">
+  </div>
+  <div class="content-margin"></div>
+  <div id="content" class="container">
+    <div class="row">
+      <div class="col-3">
+        <img id="poster" [src]="poster" alt="poster">
+      </div>
+      <div id="details" class="col-9">
+        <h1 [innerHTML]="title"></h1>
+        <p *ngIf="show?.tagline" id="tagline" [innerHtml]="show!.tagline"></p>
+        <div class="row">
+          <div class="col-sm-4">
+            <p *ngIf="show?.genres"><b>Genres: </b>|<span *ngFor="let genre of show!.genres"> {{genre}} |</span></p>
+            <p *ngIf="show?.seasons"><b>Seasons: </b><span [innerHTML]="show!.seasons"></span></p>
+            <p *ngIf="show?.vote_average"><b>Rating: </b><ngb-rating [rate]="show!.vote_average!/2" [readonly]="true" [max]="5"></ngb-rating></p>
+          </div>
+          <div class="col-sm-8">
+            <div *ngIf="show?.overview">
+              <p><b>Overview:</b></p>
+              <p [innerHTML]="show!.overview!"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="content-margin"></div>
+  <div *ngIf="show?.cast" id="cast" class="container">
+    <h2>Cast</h2>
+    <div class="row">
+      <div *ngFor="let person of show!.cast!" class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 person">
+        <div class="card">
+          <img *ngIf="person.profile_path" class="card-img" [src]="'https://image.tmdb.org/t/p/original'+person.profile_path" />
+          <img *ngIf="!person.profile_path" class="card-img" src="/assets/missingImg.png" />
+          <p [innerHTML]="person.name"></p>
+          <p [innerHTML]="person.character"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="show?.cast" class="content-margin"></div>
 </div>
