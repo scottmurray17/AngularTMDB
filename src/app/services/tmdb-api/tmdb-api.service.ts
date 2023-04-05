@@ -3,6 +3,7 @@ import axios from "axios";
 import { Injectable } from "@angular/core";
 import { Movie } from "src/app/models/movie.model";
 import { Show } from "src/app/models/show.model";
+import { SearchResult } from "src/app/models/search-result.model";
 
 const config = {
   headers: {
@@ -32,14 +33,12 @@ export class TmdbApiService {
     }
   }
 
-  async getPerson(personId: String) {
+  async search(title: String): Promise<SearchResult[]> {
     try {
-      const response = await axios.get(`${constants.API_URL}/show/${personId}`, config);
-      return response;
+      const response = await axios.get(`${constants.API_URL}/search?query=${title}`, config);
+      return response.data as SearchResult[];
     } catch {
-      return {
-        data: ['Person not found']
-      }
+      return []
     }
   }
 }

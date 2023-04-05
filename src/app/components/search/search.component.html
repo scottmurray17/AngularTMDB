@@ -1,1 +1,36 @@
-<p>search works!</p>
+<div id="wrap">
+  <div id="backdrop-color">
+    <ngb-carousel #carousel id="backdrop" [interval]="3000" [showNavigationArrows]="false" [showNavigationIndicators]="false">
+      <ng-template ngbSlide *ngFor="let img of images">
+        <img [src]="img" />
+      </ng-template>
+    </ngb-carousel>
+  </div>
+  <div id="content" class="container">
+    <h1>Find Shows & Movies</h1>
+    <div class="input-group">
+      <input type="text" class="form-control" [formControl]="searchControl" placeholder="Enter the name of a Movie or TV Show" aria-label="Search">
+      <div class="input-group-append">
+        <button class="input-group-text">Search</button>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div *ngIf="loading" class="d-flex justify-content-center">
+      <div id="spinner" class="spinner-border text-primary" role="status">
+        <span class="sr-only"></span>
+      </div>
+    </div>
+    <div *ngIf="results && !loading" class="row">
+      <div *ngFor="let result of results" class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 result">
+        <a [routerLink]="'/'+result.media_type" [queryParams]="{id: result.id}">
+          <div class="card">
+            <img *ngIf="result.poster_path" class="card-img" [src]="'https://image.tmdb.org/t/p/original'+result.poster_path" />
+            <img *ngIf="!result.poster_path" class="card-img" src="/assets/missingImg.png" />
+            <p [innerHTML]="result.name"></p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

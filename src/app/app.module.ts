@@ -7,6 +7,7 @@ import { services } from './services';
 import { components } from './components';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { pipes } from './pipes';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,9 @@ import { pipes } from './pipes';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [...services],
   bootstrap: [AppComponent]

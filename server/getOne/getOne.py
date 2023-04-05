@@ -11,7 +11,6 @@ def lambda_handler(event, context):
 
     searchType = None
     if event['resource'] == '/movie/{id+}': searchType = 'movie'
-    elif event['resource'] == '/person/{id+}': searchType = 'person'
     elif event['resource'] == '/show/{id+}': searchType = 'tv'
     else: raise 'INVALID RESOURCE'
 
