@@ -7,5 +7,5 @@ export const components = [
   MovieComponent,
   PersonComponent,
   SearchComponent,
-  ShowComponent
+  ShowComponent,
 ]

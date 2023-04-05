@@ -43,7 +43,7 @@ def lambda_handler(event, context):
         'title': tmdbObject['title'],
         'vote_average': tmdbObject['vote_average'],
         'vote_count': tmdbObject['vote_count'],
-        'cast': list(map(lambda person: {'id': person['id'], 'name': person['name'], 'character': person['character']}, cast['cast'])),
+        'cast': list(map(lambda person: {'id': person['id'], 'name': person['name'], 'character': person['character'], 'profile_path': person['profile_path']}, cast['cast'])),
       }
     else: response = tmdbObject
 
