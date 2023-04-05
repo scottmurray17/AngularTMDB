@@ -1,5 +1,5 @@
 export interface Cast {
-  id?: number,
-  name?: string,
-  character?: string
+  id: number,
+  name: string,
+  character: string
 }

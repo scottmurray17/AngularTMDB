@@ -4,6 +4,43 @@
   </div>
 </div>
 
-<div id="content" *ngIf="!loading">
-  <img id="backdrop" [src]="backdrop" alt="backdrop">
+<div id="wrap" *ngIf="!loading">
+  <div id="backdrop-color">
+    <img id="backdrop" [src]="backdrop" alt="backdrop">
+  </div>
+  <div id="content" class="container">
+    <div class="row">
+      <div class="col-3">
+        <img id="poster" [src]="poster" alt="poster">
+      </div>
+      <div id="details" class="col-9">
+        <h1 [innerHTML]="title"></h1>
+        <p *ngIf="movie?.tagline" id="tagline" [innerHtml]="movie!.tagline"></p>
+        <div class="row">
+          <div class="col-sm-4">
+            <p *ngIf="movie?.genres"><b>Genres: </b>|<span *ngFor="let genre of movie!.genres"> {{genre}} |</span></p>
+            <p *ngIf="movie?.runtime"><b>Runtime: </b> <span [innerHTML]="movie!.runtime! | runtime"></span></p>
+            <p *ngIf="movie?.vote_average"><b>Rating: </b><ngb-rating [rate]="movie!.vote_average!/2" [readonly]="true" [max]="5"></ngb-rating></p>
+          </div>
+          <div class="col-sm-8">
+            <div *ngIf="movie?.overview">
+              <p><b>Overview:</b></p>
+              <p [innerHTML]="movie!.overview!"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="movie?.cast" id="cast" class="container">
+    <h2>Cast</h2>
+    <div class="row">
+      <div *ngFor="let person of movie!.cast!" class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 person">
+        <div class="card">
+          <p [innerHTML]="person.name"></p>
+          <p [innerHTML]="person.character"></p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

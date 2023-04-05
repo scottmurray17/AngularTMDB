@@ -1,15 +1,56 @@
-#backdrop {
-  width: 100%;
-  height: 100vh;
-  opacity: 0.5;
-}
-
-#content {
-  background-color: black;
-}
-
 #spinner {
   margin-top: 16px;
   width: 5rem;
   height: 5rem;
+}
+
+#backdrop {
+  position: absolute;
+  width: 100vw;
+  height: auto;
+  opacity: 0.5;
+}
+
+#wrap {
+  background-color: gray;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+#content, #cast {
+  background-color: white;
+  margin-top: 5vh;
+  position: relative;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 10px;
+}
+
+#poster {
+  width: 100%;
+  border-radius: 5px;
+}
+
+#details {
+  margin-top: 5vh;
+  #tagline {
+    font-style: italic;
+    color: darkgray;
+  }
+}
+
+
+
+.person {
+  margin-bottom: 5px;
+  .card {
+    height: 100%;
+  }
+  p {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+  }
 }

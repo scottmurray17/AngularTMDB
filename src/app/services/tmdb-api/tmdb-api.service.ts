@@ -18,7 +18,7 @@ export class TmdbApiService {
       const response = await axios.get(`${constants.API_URL}/movie/${movieId}`, config);
       return response.data as Movie;
     } catch {
-      return {}
+      return {} as Movie
     }
   }
 
