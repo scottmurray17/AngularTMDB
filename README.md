@@ -6,8 +6,8 @@ This project is built using Angular 15, with an API Gateway backend. The files i
 
 * Page for individual people with their credits
 * Test implementations and integration with build
+* Create an error page for scenario where user manually enters an incorrect movie/show ID
 
 ## Known Issues
 
 * When running the angular server locally, there is a CORS error between the browser and API Gateway on Firefox. This can be fixed by using private browsing, or using a different web browser.
-* Assets do not load on the github deployment. Bitbucket is probably the ideal solution instead of storing the files on github. 

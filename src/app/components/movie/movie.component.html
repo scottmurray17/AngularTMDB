@@ -40,7 +40,7 @@
       <div *ngFor="let person of movie!.cast!" class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 person">
         <div class="card">
           <img *ngIf="person.profile_path" class="card-img" [src]="'https://image.tmdb.org/t/p/original'+person.profile_path" />
-          <img *ngIf="!person.profile_path" class="card-img" src="/assets/missingImg.png" />
+          <img *ngIf="!person.profile_path" class="card-img" src="https://tmdb-assets.s3.amazonaws.com/missingImg.png" />
           <p [innerHTML]="person.name"></p>
           <p [innerHTML]="person.character"></p>
         </div>

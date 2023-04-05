@@ -26,7 +26,7 @@
         <a [routerLink]="'/'+result.media_type" [queryParams]="{id: result.id}">
           <div class="card">
             <img *ngIf="result.poster_path" class="card-img" [src]="'https://image.tmdb.org/t/p/original'+result.poster_path" />
-            <img *ngIf="!result.poster_path" class="card-img" src="/assets/missingImg.png" />
+            <img *ngIf="!result.poster_path" class="card-img" src="https://tmdb-assets.s3.amazonaws.com/missingImg.png" />
             <p [innerHTML]="result.name"></p>
           </div>
         </a>
