@@ -8,6 +8,7 @@
   <div id="backdrop-color">
     <img id="backdrop" [src]="backdrop" alt="backdrop">
   </div>
+  <div class="content-margin"></div>
   <div id="content" class="container">
     <div class="row">
       <div class="col-3">
@@ -32,6 +33,7 @@
       </div>
     </div>
   </div>
+  <div class="content-margin"></div>
   <div *ngIf="movie?.cast" id="cast" class="container">
     <h2>Cast</h2>
     <div class="row">
@@ -43,4 +45,5 @@
       </div>
     </div>
   </div>
+  <div *ngIf="movie?.cast" class="content-margin"></div>
 </div>
